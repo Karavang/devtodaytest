@@ -22,8 +22,14 @@ npm start
 
 ### Countries Router (`/countries`)
 
-| Method | Endpoint           | Description                                      | Request Body                                      | Response                           |
-| ------ | ------------------ | ------------------------------------------------ | ------------------------------------------------- | ---------------------------------- |
-| GET    | `/countries`       | Fetch a list of all countries                    | None                                              | JSON array of countries            |
-| GET    | `/countries/:code` | Fetch details about a specific country by code   | None                                              | JSON object with country details   |
-| POST   | `/countries`       | Add a new country to the database (if supported) | JSON: `{ "code": "US", "name": "United States" }` | JSON object of the created country |
+| Method | Endpoint           | Description                                    | Request Body | Response                         |
+| ------ | ------------------ | ---------------------------------------------- | ------------ | -------------------------------- |
+| GET    | `/countries`       | Fetch a list of all countries                  | None         | JSON array of countries          |
+| GET    | `/countries/:code` | Fetch details about a specific country by code | None         | JSON object with country details |
+| GET    | `/test-objectid`   | Get a valid id for mongodb                     | None         | JSON object with testUserId      |
+
+### Users Router (`/users`)
+
+| Method | Endpoint                           | Description                                                                                  | Request Body                                                                                      | Response                          |
+| ------ | ---------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------- |
+| POST   | `/users/:userId/calendar/holidays` | This endpoint allows a user to add national holidays of a specific country to their calendar | JSON: `{ "countryCode": "US", "year": 2025, "holidays": ["New Year's Day", "Independence Day"] }` | JSON object of the saved calendar |
