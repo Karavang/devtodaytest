@@ -21,18 +21,15 @@ export const addHolidaysToCalendar = async (
   holidays?: string[],
 ): Promise<ICalendar> => {
   try {
-    // Validate userId
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       throw new Error(`Invalid userId: ${userId}`);
     }
     const objectUserId = new mongoose.Types.ObjectId(userId);
 
-    // Fetch holidays from API
     const url = `${process.env.NAGER_API}/PublicHolidays/${year}/${countryCode}`;
     console.log("Fetching holidays from API:", url);
     const { data } = await axios.get<HolidayAPIResponse[]>(url);
 
-    // Map to strings and filter if needed
     let selectedHolidays: string[] = data.map((h) => h.localName);
     if (holidays && holidays.length > 0) {
       const holidaySet = new Set(holidays.map((h) => h.toLowerCase()));
@@ -43,7 +40,6 @@ export const addHolidaysToCalendar = async (
 
     console.log("Selected holidays:", selectedHolidays);
 
-    // Create calendar document
     const calendar = new Calendar({
       userId: objectUserId,
       holidays: selectedHolidays,
@@ -55,7 +51,7 @@ export const addHolidaysToCalendar = async (
 
     return calendar;
   } catch (error: any) {
-    console.error("Error in addHolidaysToCalendar:", error.message);
-    throw new Error(`Failed to add holidays: ${error.message}`);
+    console.error("Error in addHolidaysToCalendar:", error);
+    throw new Error(`Failed to add holidays: ${error}`);
   }
 };
