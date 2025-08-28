@@ -22,7 +22,8 @@ npm start
 
 ### Countries Router (`/countries`)
 
-| Method | Endpoint           | Description                                    | Request Body | Response                         |
-| ------ | ------------------ | ---------------------------------------------- | ------------ | -------------------------------- |
-| GET    | `/countries`       | Fetch a list of all countries                  | None         | JSON array of countries          |
-| GET    | `/countries/:code` | Fetch details about a specific country by code | None         | JSON object with country details |
+| Method | Endpoint           | Description                                      | Request Body                                      | Response                           |
+| ------ | ------------------ | ------------------------------------------------ | ------------------------------------------------- | ---------------------------------- |
+| GET    | `/countries`       | Fetch a list of all countries                    | None                                              | JSON array of countries            |
+| GET    | `/countries/:code` | Fetch details about a specific country by code   | None                                              | JSON object with country details   |
+| POST   | `/countries`       | Add a new country to the database (if supported) | JSON: `{ "code": "US", "name": "United States" }` | JSON object of the created country |
